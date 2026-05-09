@@ -263,18 +263,15 @@ def generate_dataset(num_mdps=20, traces_per_policy=50, max_steps=100, seed=None
     
     return {'mdps': mdps_metadata, 'traces': traces}
 
-def build_vocab(max_grid_size, actions):
+def build_vocab_with_pad(max_grid_size, actions):
     vocab = {}
-    # state coordinates
+    vocab['<pad>'] = len(vocab)
     for i in range(max_grid_size):
         vocab[f'coord_{i}'] = len(vocab)
-    # actions
     for a in actions:
         vocab[f'action_{a}'] = len(vocab)
-    # rewards (you have exactly 2 distinct values in your dataset)
     vocab['reward_step'] = len(vocab)  # for -0.1
     vocab['reward_goal'] = len(vocab)  # for 1
-    # special
     vocab['<eos>'] = len(vocab)
     return vocab
 

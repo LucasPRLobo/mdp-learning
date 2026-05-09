@@ -2,19 +2,6 @@ import torch
 import torch.nn as nn
 
 
-def build_vocab_with_pad(max_grid_size, actions):
-    vocab = {}
-    vocab['<pad>'] = len(vocab)
-    for i in range(max_grid_size):
-        vocab[f'coord_{i}'] = len(vocab)
-    for a in actions:
-        vocab[f'action_{a}'] = len(vocab)
-    vocab['reward_step'] = len(vocab)
-    vocab['reward_goal'] = len(vocab)
-    vocab['<eos>'] = len(vocab)
-    return vocab
-
-
 class GridworldTransformer(nn.Module):
     def __init__(self, vocab_size, context_length, d_model=64, nhead=4,
                  num_layers=2, dim_feedforward=128, pad_id=0):
