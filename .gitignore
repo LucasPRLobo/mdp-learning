@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+
+# Regeneratable training output (from run_grid.sh)
+gridworld/checkpoints/
+gridworld/logs/
+
+# Stale artifacts from earlier sessions
+gridworld/dataset.pkl
+gridworld/tokenized.pkl
+gridworld/model_large_v1.pt
+gridworld/model_large_seed*.pt
+gridworld/model_small_seed*.pt
